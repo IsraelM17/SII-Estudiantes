@@ -21,6 +21,7 @@ class HttpHandler{
   Future<dynamic> getLista(String url) async{
     String basicAuth = 'Basic ' + base64Encode(utf8.encode(Settings.username+":"+Settings.password));
     http.Response response = await http.get(url, headers: {'authorization': basicAuth});
+    print(response.body);
     return json.decode(response.body);
   }
 
@@ -31,8 +32,6 @@ class HttpHandler{
   Future<dynamic> getKardex(String url) async{
     String basicAuth = 'Basic ' + base64Encode(utf8.encode(Settings.username+":"+Settings.password));
     http.Response response = await http.get(url, headers: {'authorization': basicAuth});
-    print(url);
-    print(response.body);
     return json.decode(response.body);
   }
 

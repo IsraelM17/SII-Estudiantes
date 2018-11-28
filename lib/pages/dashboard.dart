@@ -5,6 +5,7 @@ import 'package:sii_patm/pages/DashBoardFolder/actividadExtra.dart';
 import 'package:sii_patm/connection/HttpHandler.dart';
 import 'package:sii_patm/utils/settings.dart';
 import 'package:sii_patm/models/student.dart';
+import 'package:sii_patm/utils/my_navigator.dart';
 import 'dart:convert';
 
 class DashBoard extends StatefulWidget {
@@ -30,55 +31,54 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
     tabController = new TabController(length: 3, vsync: this);
   }
 
-
-  ListView listView = new ListView(
-    children: <Widget>[
-      UserAccountsDrawerHeader(
-        accountName: Text(nameStudent),
-        currentAccountPicture: GestureDetector(
-          child: CircleAvatar(
-            backgroundImage: NetworkImage('https://pickaface.net/gallery/avatar/cavneb565b7bd529c1d.png'),
-          ),
-          onTap: () => print("Cuenta"),
-        ),
-        otherAccountsPictures: <Widget>[
-          GestureDetector(
+  ListTile _getItem(Icon icon, String title, String route){
+    return ListTile(
+      leading: icon,
+      title: new Text(title),
+      onTap: (){
+        setState(() {
+                  MyNavigator.goContacts(context, route);
+                });
+      },
+    );
+  }
+  Drawer getDrawer(BuildContext context){
+    ListView listView = new ListView(
+      children: <Widget>[
+        UserAccountsDrawerHeader(
+          accountName: Text(nameStudent),
+          currentAccountPicture: GestureDetector(
             child: CircleAvatar(
-              child: Image.asset('assets/itclogo.png'),
+              backgroundImage: NetworkImage('https://pickaface.net/gallery/avatar/cavneb565b7bd529c1d.png'),
             ),
-            //onTap: ,
+            onTap: () => print("Cuenta"),
           ),
-        ],
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: NetworkImage('https://cdn-images-1.medium.com/max/800/1*8_sKMUCcMPka4fBzmcWuhA.png'),
-            fit: BoxFit.fill
-          )
+          otherAccountsPictures: <Widget>[
+            GestureDetector(
+              child: CircleAvatar(
+                child: Image.asset('assets/itclogo.png'),
+              ),
+              //onTap: ,
+            ),
+          ],
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: NetworkImage('https://cdn-images-1.medium.com/max/800/1*8_sKMUCcMPka4fBzmcWuhA.png'),
+              fit: BoxFit.fill
+            )
+          ),
         ),
-      ),
-      ListTile(
-        leading: Icon(Icons.person),
-        title: Text("Perfil"),
-      ),
-      ListTile(
-        leading: Icon(Icons.more),
-        title: Text("Inscribir Materia"),
-      ),
-      ListTile(
-        leading: Icon(Icons.contacts),
-        title: Text("Contactos"),
-      ),
-      ListTile(
-        leading: Icon(Icons.exit_to_app),
-        title: Text("Cerrar Sesión"),
-      ),
-      ListTile(
-        leading: Icon(Icons.info),
-        title: Text("A cerca de "),
-      ),
-    ],
-  );
-
+        _getItem(new Icon(Icons.person), "Perfil", "/"),
+        _getItem(new Icon(Icons.more), "Inscribir Materia", "route"),
+        _getItem(new Icon(Icons.contacts), "Contactos", "/contacts"),
+        _getItem(new Icon(Icons.exit_to_app), "Cerrar sesión", "route"),
+        _getItem(new Icon(Icons.info), "Acerca de","route"),
+      ],
+    );
+    return new Drawer(
+      child: listView,
+    );
+  }
   
   @override
   Widget build(BuildContext context) {
@@ -89,7 +89,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
       ),
 
       drawer: Drawer(
-        child: listView,
+        child: getDrawer(context),
       ),
 
       body: TabBarView(

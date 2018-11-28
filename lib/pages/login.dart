@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
     );
 
     final email = TextFormField(
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: TextInputType.number,
       autofocus: false,
       decoration: InputDecoration(
         hintText: 'No. Control',

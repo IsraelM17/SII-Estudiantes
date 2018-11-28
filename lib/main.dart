@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:sii_patm/pages/SplashScreen.dart';
 import 'package:sii_patm/pages/dashboard.dart';
+import 'package:sii_patm/pages/MenuDrawer/contacts.dart';
 
 void main() => runApp(MyApp());
 
 var routes = <String, WidgetBuilder>{
   "/dashboard": (BuildContext context) => DashBoard(),
+  "/contacts": (BuildContext context) => Contacts()
 };
 
 class MyApp extends StatelessWidget {
