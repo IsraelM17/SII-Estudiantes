@@ -40,7 +40,7 @@ class SplashScreenState extends State<SplashScreen>{
                       CircleAvatar(
                         backgroundColor: Colors.transparent,
                         radius: 150.0,
-                        child: Image.asset('assets/tecnmlogo.png')
+                        child: Image.asset('assets/iconos/tecnmlogo.png')
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 5.0),

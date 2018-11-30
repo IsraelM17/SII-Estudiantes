@@ -6,6 +6,7 @@ import 'package:sii_patm/connection/HttpHandler.dart';
 import 'package:sii_patm/utils/settings.dart';
 import 'package:sii_patm/models/student.dart';
 import 'package:sii_patm/utils/my_navigator.dart';
+import 'package:flutter_pdf_viewer/flutter_pdf_viewer.dart';
 import 'dart:convert';
 
 class DashBoard extends StatefulWidget {
@@ -35,8 +36,13 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
       title: new Text(title),
       onTap: (){
         setState(() {
-                  MyNavigator.goContacts(context, route);
-                });
+          if(route == "carga"){
+            FlutterPdfViewer.loadAsset('assets/pdf/CargaAcademica.pdf');
+          }
+          else{
+            MyNavigator.goMenuOptions(context, route);
+          }
+        });
       },
     );
   }
@@ -54,7 +60,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
           otherAccountsPictures: <Widget>[
             GestureDetector(
               child: CircleAvatar(
-                child: Image.asset('assets/itclogo.png'),
+                child: Image.asset('assets/iconos/itclogo.png'),
               ),
               //onTap: ,
             ),
@@ -67,6 +73,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
           ),
         ),
         _getItem(new Icon(Icons.person), "Perfil", "/updateStudent"),
+        _getItem(new Icon(Icons.picture_as_pdf), "Carga academica", "carga"),
         _getItem(new Icon(Icons.more), "Inscribir Materia", "route"),
         _getItem(new Icon(Icons.contacts), "Contactos", "/contacts"),
         _getItem(new Icon(Icons.exit_to_app), "Cerrar sesión", "route"),

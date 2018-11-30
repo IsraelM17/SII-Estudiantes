@@ -37,7 +37,7 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
           otherAccountsPictures: <Widget>[
             GestureDetector(
               child: CircleAvatar(
-                child: Image.asset('assets/itclogo.png'),
+                child: Image.asset('assets/iconos/itclogo.png'),
               ),
               //onTap: ,
             ),

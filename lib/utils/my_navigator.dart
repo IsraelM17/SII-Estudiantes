@@ -9,13 +9,10 @@ class MyNavigator {
     Navigator.pushNamed(context, "/dashboard");
   }
 
-  static void goContacts(BuildContext context, String route){
+  static void goMenuOptions(BuildContext context, String route){
     Navigator.pushNamed(context, route);
   }
-
-  static void goUpdateStudents(BuildContext context){
-    Navigator.pushNamed(context, "/updateStudent");
-  }
+  
   /*
   static void goToIntro(BuildContext c  ontext) {
     Navigator.pushNamed(context, "/intro");
