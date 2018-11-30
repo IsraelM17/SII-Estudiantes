@@ -70,10 +70,11 @@ flutter:
   # For details regarding fonts from package dependencies,
   # see https://flutter.io/custom-fonts/#from-packages
   assets:
-    - assets/itclogo.png
-    - assets/tecnmlogo.png
+    - assets/iconos/itclogo.png
+    - assets/iconos/tecnmlogo.png
     - assets/iconos/futbol.png
+    - assets/pdf/CargaAcademica.pdf
   fonts:
       - family: Nunito
         fonts:
-          - asset: assets/Nunito.ttf
+          - asset: assets/fonts/Nunito.ttf
