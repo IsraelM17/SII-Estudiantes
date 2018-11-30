@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sii_patm/pages/SplashScreen.dart';
 import 'package:sii_patm/pages/dashboard.dart';
 import 'package:sii_patm/pages/MenuDrawer/contacts.dart';
+import 'package:sii_patm/pages/MenuDrawer/profile.dart';
 
 void main() => runApp(MyApp());
 
 var routes = <String, WidgetBuilder>{
   "/dashboard": (BuildContext context) => DashBoard(),
-  "/contacts": (BuildContext context) => Contacts()
+  "/contacts": (BuildContext context) => Contacts(),
+  "/updateStudent": (BuildContext context) => Profile(),
 };
 
 class MyApp extends StatelessWidget {

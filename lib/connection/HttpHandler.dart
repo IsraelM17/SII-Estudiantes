@@ -21,7 +21,6 @@ class HttpHandler{
   Future<dynamic> getLista(String url) async{
     String basicAuth = 'Basic ' + base64Encode(utf8.encode(Settings.username+":"+Settings.password));
     http.Response response = await http.get(url, headers: {'authorization': basicAuth});
-    print(response.body);
     return json.decode(response.body);
   }
 
@@ -52,6 +51,15 @@ class HttpHandler{
     //Lista lista = new Lista.fromJson(json.decode(response.body));
     //print("---------------------->"+lista.periodo);
     print("---------------------->"+response.body);
+  }
+
+  Future putStudent(String url, String data) async{
+    print(data);
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode(Settings.username+":"+Settings.password));
+    http.Response response = await http.put(url, headers: {'authorization': basicAuth, "Content-Type" : "application/json"}, body: data);
+    print(response.statusCode);
+    Settings.statusCode = response.statusCode;
+    return false;
   }
 
 }

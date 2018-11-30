@@ -25,9 +25,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
   @override
   void initState(){
     super.initState();
-    //validate();
-    //loadJson();
-    loadStudent(Settings.cadenaCon+"wsstudent/getStudent/"+Settings.user+"/"+Settings.token);
+    loadStudent();
     tabController = new TabController(length: 3, vsync: this);
   }
 
@@ -68,7 +66,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
             )
           ),
         ),
-        _getItem(new Icon(Icons.person), "Perfil", "/"),
+        _getItem(new Icon(Icons.person), "Perfil", "/updateStudent"),
         _getItem(new Icon(Icons.more), "Inscribir Materia", "route"),
         _getItem(new Icon(Icons.contacts), "Contactos", "/contacts"),
         _getItem(new Icon(Icons.exit_to_app), "Cerrar sesión", "route"),
@@ -125,16 +123,24 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
   }
 
   void validate() async{
-    var student = HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/"+Settings.user+"/"+Settings.token);
-    
+    String student = await HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/"+Settings.user+"/"+Settings.token); 
   }
 
-  Future loadStudent(String url) async {
-    String jsonString = await HttpHandler().getStudent(url);
+  Future loadStudent() async {
+    String jsonString = await HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/8/"+Settings.token);
     final jsonRsponse = json.decode(jsonString);
+    print(jsonRsponse);
     student = new Student.fromJson(jsonRsponse);
-    nameStudent = student.name;
-    print(nameStudent);
+    
+    setState(() {
+          nameStudent = student.name;
+          Settings.nameUser = nameStudent + " " + student.father_lastname;
+          Settings.career = student.career;
+          Settings.noControl = student.nocontrol;
+          Settings.address = student.address;
+          Settings.phone = student.phone;
+        });
+
     return student;
   }
 

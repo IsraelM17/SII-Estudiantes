@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sii_patm/connection/HttpHandler.dart';
 import 'package:sii_patm/models/list.dart';
 import 'package:sii_patm/utils/settings.dart';
+import 'package:sii_patm/models/student.dart';
+import 'dart:convert';
 
 class ListaCursos extends StatefulWidget {
   @override
@@ -10,7 +12,7 @@ class ListaCursos extends StatefulWidget {
 class _ListaCursosState extends State<ListaCursos> {
 
   List<Lista> list = new List();
-
+  Student student;
   @override
   void initState(){
     super.initState();
@@ -19,8 +21,12 @@ class _ListaCursosState extends State<ListaCursos> {
 
   void loadCursos() async{
     var  movies = await HttpHandler().fetchLista(Settings.cadenaCon+"wslista/getlista/"+Settings.iduser+"/"+Settings.token);
+    String jsonString = await HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/"+Settings.user+"/"+Settings.token);
+    final jsonRsponse = json.decode(jsonString);
+    student = new Student.fromJson(jsonRsponse);
     setState(() {
           list.addAll(movies);
+          Settings.nameUser = student.name;
         });
   }
 
