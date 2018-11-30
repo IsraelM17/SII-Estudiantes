@@ -51,6 +51,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
     ListView listView = new ListView(
       children: <Widget>[
         UserAccountsDrawerHeader(
+          accountEmail: Text(Settings.noControl+"@itcelaya.edu.mx"),
           accountName: Text(nameStudent),
           currentAccountPicture: GestureDetector(
             child: CircleAvatar(

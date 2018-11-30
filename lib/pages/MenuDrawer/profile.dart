@@ -27,6 +27,7 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
   @override
   Widget build(BuildContext context) {
     final logo =UserAccountsDrawerHeader(
+          accountEmail: Text(Settings.noControl+"@itcelaya.edu.mx"),
           accountName: Text("pruebita"),
           currentAccountPicture: GestureDetector(
             child: CircleAvatar(
@@ -39,7 +40,6 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
               child: CircleAvatar(
                 child: Image.asset('assets/iconos/itclogo.png'),
               ),
-              //onTap: ,
             ),
           ],
           decoration: BoxDecoration(
