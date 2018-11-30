@@ -46,6 +46,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
       },
     );
   }
+  
   Drawer getDrawer(BuildContext context){
     ListView listView = new ListView(
       children: <Widget>[
@@ -130,7 +131,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
   }
 
   void validate() async{
-    String student = await HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/"+Settings.user+"/"+Settings.token); 
+    String student = await HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/"+Settings.nameStudent+"/"+Settings.token); 
   }
 
   Future loadStudent() async {
@@ -141,7 +142,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
     
     setState(() {
           nameStudent = student.name;
-          Settings.nameUser = nameStudent + " " + student.father_lastname;
+          Settings.nameStudent = nameStudent + " " + student.father_lastname;
           Settings.career = student.career;
           Settings.noControl = student.nocontrol;
           Settings.address = student.address;

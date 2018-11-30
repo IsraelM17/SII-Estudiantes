@@ -13,6 +13,9 @@ class MyNavigator {
     Navigator.pushNamed(context, route);
   }
   
+  static void goToSendMail(BuildContext context, String route){
+    Navigator.pushNamed(context, route);
+  }
   /*
   static void goToIntro(BuildContext c  ontext) {
     Navigator.pushNamed(context, "/intro");

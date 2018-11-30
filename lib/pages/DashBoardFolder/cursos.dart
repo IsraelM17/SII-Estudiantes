@@ -20,13 +20,13 @@ class _ListaCursosState extends State<ListaCursos> {
   }
 
   void loadCursos() async{
-    var  movies = await HttpHandler().fetchLista(Settings.cadenaCon+"wslista/getlista/"+Settings.iduser+"/"+Settings.token);
-    String jsonString = await HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/"+Settings.user+"/"+Settings.token);
+    var  students = await HttpHandler().fetchLista(Settings.cadenaCon+"wslista/getlista/"+Settings.iduser+"/"+Settings.token);
+    String jsonString = await HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/"+Settings.iduser+"/"+Settings.token);
     final jsonRsponse = json.decode(jsonString);
     student = new Student.fromJson(jsonRsponse);
     setState(() {
-          list.addAll(movies);
-          Settings.nameUser = student.name;
+          list.addAll(students);
+          Settings.nameStudent= student.name;
         });
   }
 

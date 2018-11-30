@@ -3,6 +3,7 @@ import 'package:sii_patm/pages/SplashScreen.dart';
 import 'package:sii_patm/pages/dashboard.dart';
 import 'package:sii_patm/pages/MenuDrawer/contacts.dart';
 import 'package:sii_patm/pages/MenuDrawer/profile.dart';
+import 'package:sii_patm/pages/MenuDrawer/mail.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,6 +11,7 @@ var routes = <String, WidgetBuilder>{
   "/dashboard": (BuildContext context) => DashBoard(),
   "/contacts": (BuildContext context) => Contacts(),
   "/updateStudent": (BuildContext context) => Profile(),
+  "/sendMail": (BuildContext context) => SendEmail(),
 };
 
 class MyApp extends StatelessWidget {

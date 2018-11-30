@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sii_patm/connection/HttpHandler.dart';
 import 'package:sii_patm/models/list.dart';
 import 'package:sii_patm/utils/settings.dart';
-import 'package:sii_patm/connection/sendMail.dart';
+import 'package:sii_patm/utils/my_navigator.dart';
 
 class Contacts extends StatefulWidget {
   @override
@@ -62,9 +62,12 @@ class _ContactsState extends State<Contacts> {
            ),
            onTap: (){
              setState(() {
-                        print("Hola mundito");        
-                        SendMail().main(); 
-                          });
+                print("Hola mundito");
+                Settings.teacherMail = _lista[index].grupo.teacher.email;
+                print(Settings.teacherMail);
+                MyNavigator.goToSendMail(context, "/sendMail");
+                //SendMail().main(); 
+              });
            },
          );
        },

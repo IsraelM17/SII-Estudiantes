@@ -105,9 +105,10 @@ class _LoginPageState extends State<LoginPage> {
     Map<String, dynamic> user = await HttpHandler().getLogin(Settings.cadenaCon+"wsuser/validate/"+noControlController.text+"/"+passwordController.text);
     if(user['token'] != "Acceso denegado" && user['token'] != "java.lang.NullPointerException")
     {
-      Settings.token  = user['token'];
-      Settings.user   = noControlController.text;
-      Settings.iduser = user['idestudent'];
+      Settings.token          = user['token'];
+      Settings.noControl      = noControlController.text;
+      Settings.iduser         = user['idestudent'];
+      Settings.passwordStudent= passwordController.text;  
       MyNavigator.goDashBoard(context);
     }
     else{
