@@ -59,7 +59,6 @@ class HttpHandler{
     http.Response response = await http.put(url, headers: {'authorization': basicAuth, "Content-Type" : "application/json"}, body: data);
     print(response.statusCode);
     Settings.statusCode = response.statusCode;
-    return false;
   }
 
 }

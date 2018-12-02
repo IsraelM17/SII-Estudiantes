@@ -14,6 +14,17 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
   TextEditingController controllerCarrer      = new TextEditingController();
   TextEditingController controllerPhone       = new TextEditingController(); 
   TextEditingController controllerAddress     = new TextEditingController();
+  final GlobalKey<ScaffoldState> _globalKey   = new GlobalKey<ScaffoldState>();
+
+  _showSnackBar(){
+    final snackBar = SnackBar(
+      content: Text("Datos Actualizados"),
+      backgroundColor: Colors.blueAccent,
+      duration: Duration(seconds: 2),
+    );
+
+  _globalKey.currentState.showSnackBar(snackBar);
+  }
 
   @override
   void initState(){
@@ -117,6 +128,7 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
 
     return Scaffold(
       backgroundColor: Colors.white,
+      key: _globalKey,
       appBar: AppBar(
         title: Text("Perfil"),
       ),
@@ -156,7 +168,10 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
     });
     print("********** "+data);
     HttpHandler().putStudent(Settings.cadenaCon+"wsstudent/putStudent/"+Settings.token,data);
-    if(Settings.statusCode == 200)
-      Navigator.pop(context);
+    if(Settings.statusCode == 200){
+      Settings.phone = controllerPhone.text;
+      Settings.address = controllerAddress.text;
+      _showSnackBar();
+    }
   }
 }

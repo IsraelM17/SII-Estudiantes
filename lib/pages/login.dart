@@ -15,9 +15,20 @@ class _LoginPageState extends State<LoginPage> {
 
   String noControl  = "";
   String password   = "";
-  bool ok = false;
+  bool  acceso       = false;
   final TextEditingController noControlController = new TextEditingController();
   final TextEditingController passwordController  = new TextEditingController();
+
+  final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+  _showSnackBar() {
+    final snackBar = new SnackBar(
+        content: Text("Usuario y/o contraseña invalidos"),
+        duration: Duration(seconds: 2),
+        backgroundColor: Colors.redAccent
+    );
+    //How to display Snackbar ?
+    _scaffoldKey.currentState.showSnackBar(snackBar);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +74,12 @@ class _LoginPageState extends State<LoginPage> {
           height: 42.0,
           onPressed: () {
             validate();
+            if(acceso){
+              MyNavigator.goDashBoard(context);
+            }
+            else{
+              _showSnackBar();
+            }
           },
           color: Colors.green,
           child: Text('Ingresar', style: TextStyle(color: Colors.white)),
@@ -80,6 +97,7 @@ class _LoginPageState extends State<LoginPage> {
 
 
     return Scaffold(
+      key: _scaffoldKey,
       backgroundColor: Colors.white,
       body: Center(
         child: ListView(
@@ -93,8 +111,8 @@ class _LoginPageState extends State<LoginPage> {
             password,
             SizedBox(height: 24.0),
             loginButton,
-            forgotLabel,
-          ],
+            forgotLabel
+          ]
         ),
       ),
     );
@@ -109,11 +127,12 @@ class _LoginPageState extends State<LoginPage> {
       Settings.noControl      = noControlController.text;
       Settings.iduser         = user['idestudent'];
       Settings.passwordStudent= passwordController.text;  
-      MyNavigator.goDashBoard(context);
+      //MyNavigator.goDashBoard(context);
+      acceso = true;
     }
     else{
-      print("Error");
-      ok = false;
+      print("Usuario y/o contraseña invalidos");
+      acceso = false;
     }
   }
 

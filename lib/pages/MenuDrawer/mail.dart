@@ -12,11 +12,21 @@ class _SendEmailState extends State<SendEmail> with SingleTickerProviderStateMix
   TextEditingController controllerFrom    = new TextEditingController();
   TextEditingController controllerSubject = new TextEditingController();
   TextEditingController controllerContent = new TextEditingController(); 
+  GlobalKey<ScaffoldState> globalKey      = new GlobalKey();
 
   @override
   void initState(){
     super.initState();
     controllerFrom.text = Settings.teacherMail;
+  }
+
+  showSnackBar(){
+    final snackBar = new SnackBar(
+      content: Text("Su mensaje ha sido enviado"),
+      backgroundColor: Colors.blueAccent,
+      duration: Duration(seconds: 2),
+    );
+    globalKey.currentState.showSnackBar(snackBar);
   }
 
   @override
@@ -54,6 +64,7 @@ class _SendEmailState extends State<SendEmail> with SingleTickerProviderStateMix
     );
   
     return new Scaffold(
+      key: globalKey,
       appBar: AppBar(
         title: Text("Enviar Correo"),
         backgroundColor: Colors.green,
@@ -76,6 +87,7 @@ class _SendEmailState extends State<SendEmail> with SingleTickerProviderStateMix
         label: const Text('Enviar'),
         onPressed: () {
           SendMail().main(controllerFrom.text, controllerSubject.text, controllerContent.text);
+          showSnackBar();
         },
       ),
     );
