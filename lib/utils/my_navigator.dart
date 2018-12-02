@@ -6,7 +6,8 @@ class MyNavigator {
   }
 
   static void goDashBoard(BuildContext context){
-    Navigator.pushNamed(context, "/dashboard");
+    //Navigator.pushNamed(context, "/dashboard");
+    Navigator.of(context) .pushNamedAndRemoveUntil("/dashboard", (Route<dynamic> route) => false);
   }
 
   static void goMenuOptions(BuildContext context, String route){

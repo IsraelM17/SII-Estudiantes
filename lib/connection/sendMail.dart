@@ -15,7 +15,7 @@ class SendMail{
     
     // Create our message.
     final message = new Message()
-      ..from = new Address(username, subjectt)
+      ..from = new Address(username, username)
       ..recipients.add(from)  
       ..subject = subjectt
       ..text = content

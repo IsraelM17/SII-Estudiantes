@@ -28,7 +28,7 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
   Widget build(BuildContext context) {
     final logo =UserAccountsDrawerHeader(
           accountEmail: Text(Settings.noControl+"@itcelaya.edu.mx"),
-          accountName: Text("pruebita"),
+          accountName: Text(Settings.nameStudent),
           currentAccountPicture: GestureDetector(
             child: CircleAvatar(
               backgroundImage: NetworkImage('https://pickaface.net/gallery/avatar/cavneb565b7bd529c1d.png'),
@@ -57,7 +57,7 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-        labelText: 'No. Control',
+        suffixText: 'No. Control'
       ),
       controller: controllerNocControl,
       
@@ -69,18 +69,19 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)), fillColor: Colors.green,
-        labelText: 'Carrera',
+        suffixText: 'Carrera'
       ),
       controller: controllerCarrer,
     );
 
     final txtPhone = TextFormField(
       autofocus: false,
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         //counterText: 'Telefono',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)), fillColor: Colors.green,
-        labelText: 'Telefono',
+        suffixText: 'Telefono'
       ),
       controller: controllerPhone,
     );
@@ -90,7 +91,7 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)), fillColor: Colors.green,
-        labelText: 'Direccion',
+        suffixText: 'Direccion',
       ),
       controller: controllerAddress,
     );
@@ -127,7 +128,7 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
             logo,
             SizedBox(height: 35.0),
             txtNoControl,
-            SizedBox(height: 8.0),
+            SizedBox(height: 10.0),
             txtCareer,
             SizedBox(height: 8.0,),
             txtPhone,

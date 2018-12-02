@@ -37,7 +37,7 @@ class _ListaCursosState extends State<ListaCursos> {
         DataColumn(
           label: Text("Materia"),
           numeric: false,
-          tooltip: "To display first name of the Name",
+          tooltip: "muestra materia",
         ),
         DataColumn(
           label: Text("C1"),
@@ -46,17 +46,17 @@ class _ListaCursosState extends State<ListaCursos> {
          DataColumn(
           label: Text("C2"),
           numeric: false,
-          tooltip: "To display last name of the Name",
+          tooltip: "c2",
         ),
         DataColumn(
           label: Text("C3"),
           numeric: false,
-          tooltip: "To display last name of the Name",
+          tooltip: "c3",
         ),
         DataColumn(
           label: Text("C4"),
           numeric: false,
-          tooltip: "To display last name of the Name",
+          tooltip: "c5",
         ),
       ],
       rows: list.map((name) => DataRow(

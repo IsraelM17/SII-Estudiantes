@@ -18,7 +18,7 @@ class SplashScreenState extends State<SplashScreen>{
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () => MyNavigator.goLogin(context));
+    Timer(Duration(seconds: 3), () => MyNavigator.goLogin(context));
   }
 
   @override
