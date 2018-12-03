@@ -44,16 +44,7 @@ class SplashScreenState extends State<SplashScreen>{
                       ),
                       Padding(
                         padding: EdgeInsets.only(top: 5.0),
-                      ),/*
-                      Text(
-                        "Instituto Tecnológico de Celaya",
-                        style: TextStyle(
-                          color: Colors.black54,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24.0,
-                          fontFamily: 'Nunito'
-                          ),
-                      ),*/
+                      ),
                     ],
                   ),
                 ),
