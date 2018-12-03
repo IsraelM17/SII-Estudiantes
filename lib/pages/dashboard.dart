@@ -76,7 +76,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
         ),
         _getItem(new Icon(Icons.person), "Perfil", "/updateStudent"),
         _getItem(new Icon(Icons.picture_as_pdf), "Carga academica", "carga"),
-        _getItem(new Icon(Icons.more), "Inscribir Materia", "route"),
+        _getItem(new Icon(Icons.more), "Inscribir Materia", "/pendingMatter"),
         _getItem(new Icon(Icons.contacts), "Contactos", "/contacts"),
         _getItem(new Icon(Icons.exit_to_app), "Cerrar sesión", "route"),
         _getItem(new Icon(Icons.info), "Acerca de","route"),

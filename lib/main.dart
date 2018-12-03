@@ -4,6 +4,7 @@ import 'package:sii_patm/pages/dashboard.dart';
 import 'package:sii_patm/pages/MenuDrawer/contacts.dart';
 import 'package:sii_patm/pages/MenuDrawer/profile.dart';
 import 'package:sii_patm/pages/MenuDrawer/mail.dart';
+import 'package:sii_patm/pages/MenuDrawer/pendingMattters.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,6 +13,7 @@ var routes = <String, WidgetBuilder>{
   "/contacts": (BuildContext context) => Contacts(),
   "/updateStudent": (BuildContext context) => Profile(),
   "/sendMail": (BuildContext context) => SendEmail(),
+  "/pendingMatter": (BuildContext context) => PendingMatters()
 };
 
 class MyApp extends StatelessWidget {

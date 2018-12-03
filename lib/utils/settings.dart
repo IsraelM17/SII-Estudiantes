@@ -23,6 +23,7 @@ class Settings{
   static String phone = "";
   static String noControl = "";
   static String passwordStudent = ""; 
+  static String idStudent = "";
 
 
   /**
