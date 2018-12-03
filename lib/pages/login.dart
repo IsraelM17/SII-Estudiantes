@@ -74,12 +74,14 @@ class _LoginPageState extends State<LoginPage> {
           height: 42.0,
           onPressed: () {
             validate();
+            /*
             if(acceso){
               MyNavigator.goDashBoard(context);
             }
             else{
               _showSnackBar();
             }
+            */
           },
           color: Colors.green,
           child: Text('Ingresar', style: TextStyle(color: Colors.white)),
@@ -123,16 +125,23 @@ class _LoginPageState extends State<LoginPage> {
     Map<String, dynamic> user = await HttpHandler().getLogin(Settings.cadenaCon+"wsuser/validate/"+noControlController.text+"/"+passwordController.text);
     if(user['token'] != "Acceso denegado" && user['token'] != "java.lang.NullPointerException")
     {
-      Settings.token          = user['token'];
-      Settings.noControl      = noControlController.text;
-      Settings.iduser         = user['idestudent'];
-      Settings.passwordStudent= passwordController.text;  
-      //MyNavigator.goDashBoard(context);
-      acceso = true;
+      print(user['role']);
+      if(user['role'] == "1"){
+        Settings.token          = user['token'];
+        Settings.noControl      = noControlController.text;
+        Settings.iduser         = user['idestudent'];
+        Settings.passwordStudent= passwordController.text; 
+        acceso = true;
+        MyNavigator.goDashBoard(context);
+      } 
+      else if(user['role'] == "2"){
+        print("Este wey es maestro");
+      }
     }
     else{
       print("Usuario y/o contraseña invalidos");
       acceso = false;
+      _showSnackBar();
     }
   }
 
