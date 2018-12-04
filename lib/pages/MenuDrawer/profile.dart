@@ -155,23 +155,43 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
   }
 
   void sendData() async{
-    String data = jsonEncode({
-      "email": "14030625@ITCELAYA.EDU.MX",
-      "father_lastname": "MORENO",
-      "idcareer": "0",
-      "idstudent": "8",
-      "mother_lastname": "CASILLAS",
-      "name": "SERGIO ISRAEL",
-      "nocontrol": "14030625",
+    String data;
+    String url;
+    if(Settings.role == "1"){
+      data = jsonEncode({
+        "email": Settings.noControl+"@itcelaya.edu.mx",
+        "father_lastname": Settings.father_lastname,
+        "idcareer": "0",
+        "idstudent": Settings.iduser,
+        "mother_lastname": Settings.mother_lastname,
+        "name": Settings.name,
+        "nocontrol": Settings.noControl,
+        "address" : controllerAddress.text,
+        "phone" : controllerPhone.text
+      });
+      url = Settings.cadenaCon+"wsstudent/putStudent/"+Settings.token;
+    }
+    else if(Settings.role == "2"){
+      data = jsonEncode({
+      "email": Settings.noControl+"@ITCELAYA.EDU.MX",
+      "father_lastname": Settings.father_lastname,
+      "iddepartment": "0",
+      "idteacher": Settings.iduser,
+      "mother_lastname": Settings.mother_lastname,
+      "name": Settings.name,
+      "nocontrol": Settings.noControl,
       "address" : controllerAddress.text,
       "phone" : controllerPhone.text
-    });
+      });
+      url = Settings.cadenaCon+"wsteacher/putTeacher/"+Settings.token;
+    }
     print("********** "+data);
-    HttpHandler().putStudent(Settings.cadenaCon+"wsstudent/putStudent/"+Settings.token,data);
+    HttpHandler().putStudent(url,data);
     if(Settings.statusCode == 200){
       Settings.phone = controllerPhone.text;
       Settings.address = controllerAddress.text;
       _showSnackBar();
     }
   }
+
 }

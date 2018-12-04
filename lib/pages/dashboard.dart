@@ -148,6 +148,10 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
           Settings.noControl = student.nocontrol;
           Settings.address = student.address;
           Settings.phone = student.phone;
+          Settings.noControl  = student.nocontrol;
+          Settings.name       = student.name;
+          Settings.father_lastname = student.father_lastname;
+          Settings.mother_lastname = student.mother_lastname;
         });
 
     return student;

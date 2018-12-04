@@ -60,9 +60,13 @@ class HttpHandler{
     return getKardex(url).then((data) => data['kardex'].map<Kardex>((item) => new Kardex.fromJson(item)).toList());
   }
 
+  /**
+   * Obtiene datos del studiante/teach que ha ingresado a la aplicación
+   */
   Future<dynamic> getStudent(String url) async{
     String basicAuth = 'Basic ' + base64Encode(utf8.encode(Settings.username+":"+Settings.password));
     http.Response response = await http.get(url, headers: {'authorization': basicAuth});
+    Settings.statusCode = response.statusCode;
     return response.body.toString();
   }
 

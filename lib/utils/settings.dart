@@ -25,11 +25,15 @@ class Settings{
   static String passwordStudent = ""; 
   static String idStudent = "";
 
+  static String name = "";
+  static String father_lastname = "";
+  static String mother_lastname = "";
 
   /**
    * teacher's variable's 
    */
   static String teacherMail = "";
   static String keymatter = "";
+  static String role = "";
 
 }
