@@ -17,6 +17,14 @@ class MyNavigator {
   static void goToSendMail(BuildContext context, String route){
     Navigator.pushNamed(context, route);
   }
+
+  static void goToDashBoardTeach(BuildContext context){
+    Navigator.of(context) .pushNamedAndRemoveUntil("/dashboardteach", (Route<dynamic> route) => false);
+  }
+
+  static void goToAlumnos(BuildContext context){
+    Navigator.pushNamed(context, "/alumnos");
+  }
   /*
   static void goToIntro(BuildContext c  ontext) {
     Navigator.pushNamed(context, "/intro");

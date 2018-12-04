@@ -135,7 +135,11 @@ class _LoginPageState extends State<LoginPage> {
         MyNavigator.goDashBoard(context);
       } 
       else if(user['role'] == "2"){
-        print("Este wey es maestro");
+        Settings.iduser     = user['idteacher'];
+        Settings.token      = user['token'];
+        Settings.noControl  = noControlController.text;
+        print(Settings.iduser);
+        MyNavigator.goToDashBoardTeach(context);
       }
     }
     else{

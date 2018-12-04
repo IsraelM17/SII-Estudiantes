@@ -30,5 +30,6 @@ class Settings{
    * teacher's variable's 
    */
   static String teacherMail = "";
+  static String keymatter = "";
 
 }

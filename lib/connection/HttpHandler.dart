@@ -5,7 +5,8 @@ import 'package:sii_patm/utils/settings.dart';
 import 'package:sii_patm/models/list.dart';
 import 'package:sii_patm/models/kardex.dart';
 import 'package:sii_patm/models/studentMatter.dart';
-import 'package:sii_patm/models/student.dart';
+import 'package:sii_patm/models/teacherGroup.dart';
+import 'package:sii_patm/models/alumnos.dart';
 
 class HttpHandler{
 
@@ -91,6 +92,34 @@ class HttpHandler{
     http.Response response = await http.post(url, headers: {'authorization': basicAuth, "Content-Type" : "application/json"}, body: data);
     print(response.statusCode);
     Settings.statusCode = response.statusCode;
+  }
+
+  /**
+   * Carga grupos del profesor. (Cursos que esta impartiendo)
+   */
+  Future<dynamic> getTeacherGroup(String url) async{
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode(Settings.username+":"+Settings.password));
+    http.Response response = await http.get(url, headers: {'authorization': basicAuth});
+    print(response.body);
+    return json.decode(response.body);
+  }
+
+  Future<List<TeacherGroup>> fetchTeacherGroup(String url){
+    return getTeacherGroup(url).then((data) => data['teachergroup'].map<TeacherGroup>((item) => new TeacherGroup.fromJson(item)).toList());
+  }
+
+  /**
+   * Carga alumnos de acuerdo al grupo del profesor. (Cursos que esta impartiendo)
+   */
+  Future<dynamic> getAlumnos(String url) async{
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode(Settings.username+":"+Settings.password));
+    http.Response response = await http.get(url, headers: {'authorization': basicAuth});
+    print(response.body);
+    return json.decode(response.body);
+  }
+
+  Future<List<Alumnos>> fetchAlumnos(String url){
+    return getAlumnos(url).then((data) => data['alumno'].map<Alumnos>((item) => new Alumnos.fromJson(item)).toList());
   }
 
 }
