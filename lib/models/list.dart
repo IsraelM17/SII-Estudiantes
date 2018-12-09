@@ -1,10 +1,18 @@
 class Lista{
 
+  String c1, c2, c3, c4;
+  String idstudent;
+  String idgroup;
   String periodo;
   Grupo grupo;
   //Teacher teacher;
 
   Lista({
+    this.idgroup,
+    this.c1,
+    this.c2,
+    this.c3,
+    this.c4,
     this.periodo,
     this.grupo,
     //this.teacher
@@ -14,6 +22,11 @@ class Lista{
   factory Lista.fromJson(Map parsedJson){
     return Lista(
       periodo: parsedJson['periodo'],
+      c1: parsedJson['c1'],
+      c2: parsedJson['c2'],
+      c3: parsedJson['c3'],
+      c4: parsedJson['c4'],
+      idgroup: parsedJson['idgroup'],
       grupo: Grupo.fromJson(parsedJson['group']),
       //teacher: Teacher.fromJson(parsedJson['teacher'])
     );

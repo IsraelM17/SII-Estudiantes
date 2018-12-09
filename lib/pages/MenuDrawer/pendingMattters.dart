@@ -17,10 +17,11 @@ enum DialogAction{
 
 class _PendingMattersState extends State<PendingMatters> {
   List<StudentMatter> _lista = new List();
-  String url = Settings.cadenaCon+"wsstudentmatter/getStudentMatter/8/8/"+Settings.token;
-
+  String url = Settings.cadenaCon+"wsstudentmatter/getStudentMatter/"+Settings.iduser+"/"+Settings.semester+"/"+Settings.token;
+  
   void initState(){
     super.initState();
+    print(url);
     loadCursos();
   }
 

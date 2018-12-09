@@ -5,7 +5,7 @@ class Settings{
    */
   static String username = 'root';
   static String password = 'root';
-  static String cadenaCon = 'http://192.168.100.254:8080/SII-WSPATM/api/';
+  static String cadenaCon = 'http://192.168.43.38:8080/SII-WSPATM/api/';
 
   /**
    * ****
@@ -24,16 +24,20 @@ class Settings{
   static String noControl = "";
   static String passwordStudent = ""; 
   static String idStudent = "";
+  static String semester = "";
+
+  static String idgroup = "";
 
   static String name = "";
   static String father_lastname = "";
   static String mother_lastname = "";
-
+  static String toEmail = "";
   /**
    * teacher's variable's 
    */
-  static String teacherMail = "";
   static String keymatter = "";
   static String role = "";
+  static String idteacher = "";
+  static String nameTeacher = "";
 
 }

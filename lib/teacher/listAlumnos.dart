@@ -9,9 +9,15 @@ class ListAlumnos extends StatefulWidget {
   _ListAlumnosState createState() => new _ListAlumnosState();
  }
 
+enum DialogAction{
+  email, 
+  calificacion
+}
+
 class _ListAlumnosState extends State<ListAlumnos> {
 
-  //List<TeacherGroup> _lista = new List();
+  String email;
+
   List<Alumnos> _lista = new List();
   void initState(){
     super.initState();
@@ -23,6 +29,30 @@ class _ListAlumnosState extends State<ListAlumnos> {
     setState(() {
           _lista.addAll(data);
         });
+  }
+
+  void _showAlert(){
+    AlertDialog dialog = new AlertDialog(
+      content: Text("Elija una acción"),
+      actions: <Widget>[
+        FlatButton(onPressed: () {_alertResult(DialogAction.email);},
+        child: Text("Enviar email"),),
+        FlatButton(onPressed: () {_alertResult(DialogAction.calificacion);}, 
+        child: Text("Evaluar"),),
+      ],
+    );
+    showDialog(context: context, child: dialog);
+  }
+
+  void _alertResult(DialogAction action){
+    if(action.toString() == "DialogAction.email"){
+      Settings.toEmail = email;
+      MyNavigator.goToSendMail(context, "/sendMail");
+    }
+    else if(action.toString() == "DialogAction.calificacion"){
+      Settings.toEmail = email;
+      MyNavigator.goToCalifciaciones(context);
+    }
   }
 
   @override
@@ -37,7 +67,7 @@ class _ListAlumnosState extends State<ListAlumnos> {
          return ListTile(
            title: Text(
              _lista[index].name + " "+_lista[index].father_lastname,
-             style: //Theme.of(context).textTheme.headline,
+             style: 
                 TextStyle(
                   fontSize: 18.0,
                   color: Colors.black54,
@@ -62,11 +92,13 @@ class _ListAlumnosState extends State<ListAlumnos> {
            ),
            onTap: (){
              setState(() {
-                print("Hola mundito");
-                //Settings.teacherMail = _lista[index].grupo.teacher.email;
-                //print(Settings.teacherMail);
-                //MyNavigator.goToSendMail(context, "/sendMail");
-                //SendMail().main(); 
+               email = _lista[index].email;
+               Settings.idgroup         = _lista[index].idgroup;
+               Settings.idStudent       = _lista[index].idstudent;
+               Settings.nameStudent     = _lista[index].name;
+               Settings.father_lastname = _lista[index].father_lastname;
+               Settings.mother_lastname = _lista[index].mother_lastname;
+                _showAlert();
               });
            },
          );

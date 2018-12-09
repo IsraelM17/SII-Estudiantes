@@ -13,9 +13,12 @@ class _ListaCursosState extends State<ListaCursos> {
 
   List<Lista> list = new List();
   Student student;
+  String url = Settings.cadenaCon+"wslista/getlista/"+Settings.iduser+"/"+Settings.token;
+
   @override
   void initState(){
     super.initState();
+    print("sdjsdbnsmdb\n\n\n\n"+url);
     loadCursos();
   }
 
@@ -30,7 +33,7 @@ class _ListaCursosState extends State<ListaCursos> {
         });
   }
 
-  Widget bodyData() => DataTable(
+  Widget bodyData() =>  DataTable(
       onSelectAll: (b) {},
       sortAscending: true,
       columns: <DataColumn>[
@@ -59,30 +62,30 @@ class _ListaCursosState extends State<ListaCursos> {
           tooltip: "c5",
         ),
       ],
-      rows: list.map((name) => DataRow(
+      rows: list.map((lista) => DataRow(
               cells: [
               DataCell(
-                Text(name.grupo.materia.name),
+                Text(lista.grupo.materia.name),
                 showEditIcon: false,
                 placeholder: false,
               ),
               DataCell(
-                Text("80"),
+                Text(lista.c1),
                 showEditIcon: false,
                 placeholder: false
               ),
               DataCell(
-                Text("90"),
+                Text(lista.c2),
                 showEditIcon: false,
                 placeholder: false,
               ),
               DataCell(
-                Text("90"),
+                Text(lista.c3),
                 showEditIcon: false,
                 placeholder: false,
               ),
               DataCell(
-                Text("90"),
+                Text(lista.c4),
                 showEditIcon: false,
                 placeholder: false,
               ),
@@ -93,8 +96,10 @@ class _ListaCursosState extends State<ListaCursos> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-        child: bodyData(),
+    return Scaffold(
+        body: SingleChildScrollView(
+          child: bodyData(),
+        ),
     );
   }
 

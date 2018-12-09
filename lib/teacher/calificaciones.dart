@@ -3,17 +3,17 @@ import 'dart:convert';
 import 'package:sii_patm/utils/settings.dart';
 import 'package:sii_patm/connection/HttpHandler.dart';
 
-class Profile extends StatefulWidget {
+class Calificaciones extends StatefulWidget {
   @override
-  _ProfileState createState() => new _ProfileState();
+  _CalificacionesState createState() => new _CalificacionesState();
  }
 
-class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
+class _CalificacionesState extends State<Calificaciones>  with SingleTickerProviderStateMixin{
 
-  TextEditingController controllerNocControl  = new TextEditingController();
-  TextEditingController controllerCarrer      = new TextEditingController();
-  TextEditingController controllerPhone       = new TextEditingController(); 
-  TextEditingController controllerAddress     = new TextEditingController();
+  TextEditingController controllerC1  = new TextEditingController();
+  TextEditingController controllerC2  = new TextEditingController();
+  TextEditingController controllerC3  = new TextEditingController(); 
+  TextEditingController controllerC4  = new TextEditingController();
   final GlobalKey<ScaffoldState> _globalKey   = new GlobalKey<ScaffoldState>();
 
   _showSnackBar(){
@@ -29,17 +29,17 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
   @override
   void initState(){
     super.initState();
-    controllerNocControl.text = Settings.noControl;
-    controllerCarrer.text     = Settings.career;
-    controllerPhone.text      = Settings.phone;
-    controllerAddress.text    = Settings.address;
+    controllerC1.text = "0";
+    controllerC2.text = "0";
+    controllerC3.text = "0";
+    controllerC4.text = "0";
   }
 
   @override
   Widget build(BuildContext context) {
     final logo =UserAccountsDrawerHeader(
-          accountEmail: Text(Settings.noControl+"@itcelaya.edu.mx"),
-          accountName: Text(Settings.nameTeacher),
+          accountEmail: Text(Settings.toEmail),
+          accountName: Text(Settings.nameStudent),
           currentAccountPicture: GestureDetector(
             child: CircleAvatar(
               backgroundImage: NetworkImage('https://pickaface.net/gallery/avatar/cavneb565b7bd529c1d.png'),
@@ -64,25 +64,24 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
   final txtNoControl = TextFormField(
       keyboardType: TextInputType.number,
       autofocus: false,
-      enabled: false,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)),
-        suffixText: 'No. Control'
+        suffixText: 'Cal. I'
       ),
-      controller: controllerNocControl,
+      controller: controllerC1,
       
     );
 
     final txtCareer = TextFormField(
       autofocus: false,
-      enabled: false,
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)), fillColor: Colors.green,
-        suffixText: 'Carrera'
+        suffixText: 'Cal. II'
       ),
-      controller: controllerCarrer,
+      controller: controllerC2,
     );
 
     final txtPhone = TextFormField(
@@ -92,19 +91,20 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
         //counterText: 'Telefono',
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)), fillColor: Colors.green,
-        suffixText: 'Telefono'
+        suffixText: 'Cal. III'
       ),
-      controller: controllerPhone,
+      controller: controllerC3,
     );
 
     final txtAddress = TextFormField(
       autofocus: false,
+      keyboardType: TextInputType.number,
       decoration: InputDecoration(
         contentPadding: EdgeInsets.fromLTRB(20.0, 10.0, 20.0, 10.0),
         border: OutlineInputBorder(borderRadius: BorderRadius.circular(32.0)), fillColor: Colors.green,
-        suffixText: 'Direccion',
+        suffixText: 'Cal. IV',
       ),
-      controller: controllerAddress,
+      controller: controllerC4,
     );
 
     final btnActualizar = Padding(
@@ -130,7 +130,7 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
       backgroundColor: Colors.white,
       key: _globalKey,
       appBar: AppBar(
-        title: Text("Perfil"),
+        title: Text("Calificaciones"),
       ),
       body: Center(
         child: ListView(
@@ -155,43 +155,24 @@ class _ProfileState extends State<Profile>  with SingleTickerProviderStateMixin{
   }
 
   void sendData() async{
-    String data;
-    String url;
-    if(Settings.role == "1"){
-      data = jsonEncode({
-        "email": Settings.noControl+"@itcelaya.edu.mx",
-        "father_lastname": Settings.father_lastname,
-        "idcareer": "0",
-        "idstudent": Settings.iduser,
-        "mother_lastname": Settings.mother_lastname,
-        "name": Settings.name,
-        "nocontrol": Settings.noControl,
-        "address" : controllerAddress.text,
-        "phone" : controllerPhone.text
-      });
-      url = Settings.cadenaCon+"wsstudent/putStudent/"+Settings.token;
-    }
-    else if(Settings.role == "2"){
-      data = jsonEncode({
-      "email": Settings.noControl+"@ITCELAYA.EDU.MX",
-      "father_lastname": Settings.father_lastname,
-      "iddepartment": "0",
-      "idteacher": Settings.iduser,
-      "mother_lastname": Settings.mother_lastname,
-      "name": Settings.name,
-      "nocontrol": Settings.noControl,
-      "address" : controllerAddress.text,
-      "phone" : controllerPhone.text
-      });
-      url = Settings.cadenaCon+"wsteacher/putTeacher/"+Settings.token;
-    }
+
+    String data = jsonEncode({
+	    "idgroup": Settings.idgroup,
+      "idstudent": Settings.idStudent,
+      "periodo": "AGO-DIC",
+      "c1": controllerC1.text,
+      "c2": controllerC2.text,
+      "c3": controllerC3.text,
+      "c4": controllerC4.text
+    });
+    
+    String url = Settings.cadenaCon+"wslista/putLista/"+Settings.token;
     print("********** "+data);
-    HttpHandler().putStudent(url,data);
+    HttpHandler().putLista(url,data);
     if(Settings.statusCode == 200){
-      Settings.phone = controllerPhone.text;
-      Settings.address = controllerAddress.text;
       _showSnackBar();
     }
+
   }
 
 }

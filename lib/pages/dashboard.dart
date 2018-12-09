@@ -136,7 +136,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
   }
 
   Future loadStudent() async {
-    String jsonString = await HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/8/"+Settings.token);
+    String jsonString = await HttpHandler().getStudent(Settings.cadenaCon+"wsstudent/getStudent/"+Settings.iduser+"/"+Settings.token);
     final jsonRsponse = json.decode(jsonString);
     print(jsonRsponse);
     student = new Student.fromJson(jsonRsponse);
@@ -152,6 +152,7 @@ class _DashBoardState extends State<DashBoard>  with SingleTickerProviderStateMi
           Settings.name       = student.name;
           Settings.father_lastname = student.father_lastname;
           Settings.mother_lastname = student.mother_lastname;
+          Settings.semester = student.semester;
         });
 
     return student;

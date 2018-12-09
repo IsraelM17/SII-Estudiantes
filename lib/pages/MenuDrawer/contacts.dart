@@ -63,8 +63,8 @@ class _ContactsState extends State<Contacts> {
            onTap: (){
              setState(() {
                 print("Hola mundito");
-                Settings.teacherMail = _lista[index].grupo.teacher.email;
-                print(Settings.teacherMail);
+                Settings.toEmail = _lista[index].grupo.teacher.email;
+                print(Settings.toEmail);
                 MyNavigator.goToSendMail(context, "/sendMail");
                 //SendMail().main(); 
               });

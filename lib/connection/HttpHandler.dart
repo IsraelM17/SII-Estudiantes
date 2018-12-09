@@ -90,6 +90,17 @@ class HttpHandler{
     Settings.statusCode = response.statusCode;
   }
 
+  /**
+   * Actualizacion de calificaciones
+   */
+  Future putLista(String url, String data) async{
+    print(data);
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode(Settings.username+":"+Settings.password));
+    http.Response response = await http.put(url, headers: {'authorization': basicAuth, "Content-Type" : "application/json"}, body: data);
+    print(response.statusCode);
+    Settings.statusCode = response.statusCode;
+  }
+
   Future postMatter(String url, String data) async{
     print(data);
     String basicAuth = 'Basic ' + base64Encode(utf8.encode(Settings.username+":"+Settings.password));

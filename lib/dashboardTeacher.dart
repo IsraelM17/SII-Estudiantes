@@ -46,7 +46,7 @@ class _DashBoardTeachState extends State<DashBoardTeach> with SingleTickerProvid
       children: <Widget>[
         UserAccountsDrawerHeader(
           accountEmail: Text(Settings.noControl+"@itcelaya.edu.mx"),
-          accountName: Text("nameTeacher"),
+          accountName: Text(Settings.nameTeacher),
           currentAccountPicture: GestureDetector(
             child: CircleAvatar(
               backgroundImage: NetworkImage('https://pickaface.net/gallery/avatar/cavneb565b7bd529c1d.png'),
@@ -134,7 +134,7 @@ class _DashBoardTeachState extends State<DashBoardTeach> with SingleTickerProvid
     
     setState(() {
           Settings.noControl  = teacher.nocontrol;
-          Settings.name       = teacher.name;
+          Settings.nameTeacher= teacher.name;
           Settings.career     = "Sistemas Y computación";
           Settings.father_lastname = teacher.father_lastname;
           Settings.mother_lastname = teacher.mother_lastname;

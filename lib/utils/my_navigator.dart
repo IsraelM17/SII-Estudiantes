@@ -25,6 +25,10 @@ class MyNavigator {
   static void goToAlumnos(BuildContext context){
     Navigator.pushNamed(context, "/alumnos");
   }
+
+  static void goToCalifciaciones(BuildContext context){
+    Navigator.pushNamed(context, "/calificaciones");
+  }
   /*
   static void goToIntro(BuildContext c  ontext) {
     Navigator.pushNamed(context, "/intro");

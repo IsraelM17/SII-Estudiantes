@@ -17,7 +17,7 @@ class _SendEmailState extends State<SendEmail> with SingleTickerProviderStateMix
   @override
   void initState(){
     super.initState();
-    controllerFrom.text = Settings.teacherMail;
+    controllerFrom.text = Settings.toEmail;
   }
 
   showSnackBar(){

@@ -11,6 +11,7 @@ class Student{
   String career;
   String phone;
   String address;
+  String semester;
 
   Student({
     this.idstudent,
@@ -23,7 +24,8 @@ class Student{
     this.image,
     this.career,
     this.address,
-    this.phone
+    this.phone,
+    this.semester
   });
 
   factory Student.fromJson(Map parsedJson){
@@ -36,6 +38,7 @@ class Student{
       career: parsedJson['nameCareer'],
       address: parsedJson['address'],
       phone: parsedJson['phone'],
+      semester: parsedJson['semester']
     );
   }
 
